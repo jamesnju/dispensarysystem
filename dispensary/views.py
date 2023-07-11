@@ -1,8 +1,10 @@
 from django.shortcuts import render
-
+from .models import Student
 # Create your views here.
-def index(request):
+def dispensary_list(request):
+    dispensaries = Student.objects.all()
     context = {
-        "title": "Index Page"
+        "title": "Dispensary List",
+        "dispensaries": "dispensaries"
     }
-    return render(request, "dispensary/index.html", context=context)
+    return render(request, "dispensary/dispensary_list.html", context=context)
