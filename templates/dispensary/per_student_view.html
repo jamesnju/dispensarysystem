@@ -1,0 +1,68 @@
+{% extends "../layout.html" %}
+{% block content %}
+
+    <div class="content-section">
+        <div class="row mx-auto justify-content-center">
+            <div class="card m-4" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="cart-title text-center">Student Name</h5>
+                <div style="font-size: 30px;" class="text-center">
+                    <span><i class="fa-solid fa-list-ol"></i>
+                    </span>
+                </div>
+                <h3 class="text-center">{{ students.studentname }}</h3>
+                
+            </div>
+            </div>
+
+            <div class="card m-4" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="cart-title text-center">Student Number</h5>
+                    <div style="font-size: 30px;" class="text-center">
+                        <span><i class="fa-solid fa-user"></i>
+                        </span>
+                    </div>
+                    <h3 class="text-center">{{ students.studentnumber }}</h3>
+                    
+                </div>
+                </div>
+
+                <div class="card m-4" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="cart-title text-center">Student email</h5>
+                        <div style="font-size: 30px;" class="text-center">
+                            <span><i class="fa-solid fa-envelope"></i>
+                            </span>
+                        </div>
+                        <h3 class="text-center">{{ students.email }}</h3>
+                        
+                    </div>
+                    </div>
+
+                    <div class="card m-4" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="cart-title text-center">Student phone number</h5>
+                            <div style="font-size: 30px;" class="text-center">
+                                <span><i class="fa-solid fa-phone-volume"></i>
+                                </span>
+                            </div>
+                            <h3 class="text-center">{{ students.phone }}</h3>
+                            
+                        </div>
+                    </div>
+
+                    <div class="card m-4" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="cart-title text-center">Registared date</h5>
+                            <div style="font-size: 30px;" class="text-center">
+                                <span><i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                            </div>
+                            <h3 class="text-center">{{ students.reisterdate }}</h3>
+                            
+                        </div>
+                        </div>
+        </div>
+    </div>
+
+{% endblock %}

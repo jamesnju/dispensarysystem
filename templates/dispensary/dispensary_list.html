@@ -1,34 +1,33 @@
 {% extends "../layout.html" %}
 
-{% block content %}
-    <div class="content-section">
+{% block content %}    <div class="content-section">
         <table class="table table-strip table-bordered table-hover">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">student Name</th>
                     <th scope="col">Student id</th>
+                    <th scope="col">student email</th>
                     <th scope="col">Phone number</th>
                     <th scope="col">Regislaion Date</th>
 
                 </tr>
-            </thead>
-            
+            </thead>         
             <tbody>
-                {% for student in dispensaries %}
-                <tr style="cursor: pointer; cursor: hand;">
+                {% for dispensary in dispensaries %}
+                <tr style="cursor: pointer; cursor: hand;" onclick="window.location = `{% url 'per_student_view' dispensary.id %}`" >
                     <th scope="row">{{ forloop.counter }}</th>
-                    <th scope="row">{{ student.studentname }}</th>
-                    <th scope="row">{{ student.studentnumber }}</th>
-                    <th scope="row">{{ student.email }}</th>
-                    <th scope="row">{{ student.phone }}</th>
-                    <th scope="row">{{ student.reisterdate }}</th>
+                    <th scope="row">{{ dispensary.studentname }}</th>
+                    <th scope="row">{{ dispensary.studentnumber }}</th>
+                    <th scope="row">{{ dispensary.email }}</th>
+                    <th scope="row">{{ dispensary.phone }}</th>
+                    <th scope="row">{{ dispensary.reisterdate }}</th>
 
                 </tr>
                 {% endfor %}
             </tbody>    
             
         </table>
-    </div>
+    </div>  
 
 {% endblock %}
