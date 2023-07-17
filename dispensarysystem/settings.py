@@ -42,6 +42,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+
+""" AUTHENTICATION_BACKENDS = [
+    'dispensary.authentication.StudentBackend',
+    # other authentication backends if applicable
+] """
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

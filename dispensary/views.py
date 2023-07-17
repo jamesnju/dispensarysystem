@@ -1,14 +1,48 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from .models import Student
 from django.contrib.auth.decorators import login_required
-from .forms import AddStudentForm, UpdateStudentForm
+from django.contrib.auth import authenticate, login
+from .forms import AddStudentForm, Registered, UpdateStudentForm
 from django.contrib import messages
 # Create your views here.
+from django.shortcuts import render
+
+from django.shortcuts import render, redirect
+from .models import Disp
+def index(request):
+    if request.method == 'POST':
+        student_number = request.POST.get('studentnumber')
+        password = request.POST.get('password')
+
+        try:
+            student = Disp.objects.get(studentnumber=student_number)
+        except Disp.DoesNotExist:
+            student = None
+
+        if student is not None and student.password == password:
+            if student.studentstatus == 'registered':
+                # User is registered, redirect to home
+                messages.success(request,"successfully logged in")
+                return redirect("/dispensary/list/")
+            else:
+                # User is not registered
+                messages.success(request,"You are not registered because you are not on session")
+                return render(request, 'dispensary/not_registered.html')
+
+        # Password is incorrect or student doesn't exist
+        messages.success(request,"Invalid credentials, PLease try Again")
+        return render(request, 'dispensary/index.html')
+
+    return render(request, 'dispensary/index.html')
+
+
+
+def not_registered(request):
+
+    return redirect(request, "not_registered.html")
 
 @login_required
-
 def dispensary_list(request):
-    dispensaries = Student.objects.all()
+    dispensaries = Disp.objects.all()
     context = {
         "title": "Dispensary List",
         "dispensaries": dispensaries
@@ -16,7 +50,7 @@ def dispensary_list(request):
     return render(request, "dispensary/dispensary_list.html", context=context)
 @login_required
 def per_student_view(request, pk):
-    students = get_object_or_404(Student, pk=pk)
+    students = get_object_or_404(Disp, pk=pk)
     context = {
         'students': students
     }
@@ -36,13 +70,13 @@ def addstudent(request):
 
 @login_required
 def deletestudent(request, pk):
-    student = get_object_or_404(Student, pk=pk)
+    student = get_object_or_404(Disp, pk=pk)
     student.delete()
     messages.success(request, "student detailes deleted")
     return redirect("/dispensary/")
 @login_required
 def UpdateStudentdetails(request, pk):
-    students = get_object_or_404(Student, pk=pk)
+    students = get_object_or_404(Disp, pk=pk)
     if request.method == "POST":
         UpdateForm = UpdateStudentForm(data=request.POST)
         if UpdateForm.is_valid():
