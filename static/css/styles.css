@@ -7,3 +7,16 @@ body{
     padding: 1.5rem 1.5rem;
     border-radius: 10px;
 }
+
+.fill{
+    background-image: url(../img/stero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
+    height: 100vh;
+    color: #fff; 
+}
+footer{
+    background-color: blue;
+}
+

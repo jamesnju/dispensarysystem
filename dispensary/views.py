@@ -1,13 +1,13 @@
+from django import forms
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
-from .forms import AddStudentForm, Registered, UpdateStudentForm
+from .forms import AddStudentForm, UpdateStudentForm
 from django.contrib import messages
 # Create your views here.
-from django.shortcuts import render
-
-from django.shortcuts import render, redirect
 from .models import Disp
+
+
+@login_required
 def index(request):
     if request.method == 'POST':
         student_number = request.POST.get('studentnumber')
